@@ -20,11 +20,19 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-      - name: Build and deploy artifact to sandbox
-#run the maven deploy lifecycle. The -B indicated a batch process,
-#which reduces the amount of logging the deployment does
-        run: mvn -B deploy -DmuleDeploy -s .maven/settings.xml
-#Pass in the secrets we need for deployment as environment variables
+      - name: Build with Maven
+        run: mvn -B clean package -s .maven/settings.xml
+        
+      - name: upload Artifact
+        run: mkdir staging && cp target/*.jar staging
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging
+        
+      - name: Deploy with Maven
+        run: mvn -B deploy -DmuleDeploy -S .maven/settings.xml
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
