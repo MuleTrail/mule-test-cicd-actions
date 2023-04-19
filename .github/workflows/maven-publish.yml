@@ -6,14 +6,19 @@ on:
 #normally you wouldn't be deploying master branch pushes to Sandbox,
 #but we're keeping things simple! 😁
 
+env:
+  NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+  NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+  PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
+  PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
+
 jobs:
-  buildAndDeploy:
+  Build:
     runs-on: ubuntu-latest
     steps:
 #first, we need to checkout our mule application's code
       - name: Checkout repository
         uses: actions/checkout@v2
-        
       - name: cache dependencies
         uses: actions/setup-java@v2
         with:
@@ -22,19 +27,20 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B clean package -s .maven/settings.xml
-        
       - name: upload Artifact
         run: mkdir staging && cp target/*.jar staging
-        
       - uses: actions/upload-artifact@v2
         with:
           name: Package
           path: staging
-        
-      - name: Deploy with Maven
+ 
+  Deploy:
+    name: Deploy to Dev
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Sandbox
+    steps:
+      - name: Deploy
         run: mvn -B deploy -DmuleDeploy -s .maven/settings.xml
-        env:
-          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-          PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
-          PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
+    
