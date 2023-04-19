@@ -17,7 +17,7 @@ jobs:
   BuildAndDeployToDev:
     runs-on: ubuntu-latest
     environment:
-      name: Sandbox
+      name: UAT
     steps:
 #first, we need to checkout our mule application's code
       - name: Checkout repository
