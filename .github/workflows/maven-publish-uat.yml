@@ -14,7 +14,7 @@ env:
   ENVIRONMENT: ${{ secrets.ENVIRONMENT}}
 
 jobs:
-  BuildAndDeployToDev:
+  BuildAndDeployToUat:
     runs-on: ubuntu-latest
     environment:
       name: UAT
