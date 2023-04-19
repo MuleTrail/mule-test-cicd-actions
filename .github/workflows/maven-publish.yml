@@ -35,11 +35,4 @@ jobs:
           path: staging
       - name: Deploy
         run: mvn -B deploy -DmuleDeploy -s .maven/settings.xml
- 
-  Deploy:
-    name: Deploy to Dev
-    needs: [Build]
-    runs-on: ubuntu-latest
-    environment: 
-      name: Sandbox
     
