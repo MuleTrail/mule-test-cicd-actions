@@ -36,7 +36,7 @@
 					<muleVersion>4.4.0</muleVersion>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
-					<applicationName>mule-test-cicd-actions-ravyog</applicationName>
+					<applicationName>mule-test-cicd-actions-ravyog-${env.ENVIRONMENT}</applicationName>
 					<environment>${env.ENVIRONMENT}</environment>
 					<workers>1</workers>
 					<workerType>MICRO</workerType>
