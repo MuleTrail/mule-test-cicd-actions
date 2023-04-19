@@ -11,6 +11,7 @@ env:
   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
   PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
   PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
+  environment: ${{ secrets.environment}}
 
 jobs:
   BuildAndDeployToDev:
