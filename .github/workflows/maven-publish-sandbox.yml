@@ -12,6 +12,7 @@ env:
   PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
   PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
   ENVIRONMENT: ${{ secrets.ENVIRONMENT}}
+  BUS_GROUP_ID: ${{ secrets.BUS_GROUP_ID}}
 
 jobs:
   BuildAndDeployToDev:
