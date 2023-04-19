@@ -1,4 +1,4 @@
-name: Sandbox - Build and Deployty
+name: Single Branch MULTIENV build and deploy
 
 on:
   push:
