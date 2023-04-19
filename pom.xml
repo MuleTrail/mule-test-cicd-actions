@@ -36,8 +36,10 @@
 					<muleVersion>4.4.0</muleVersion>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
-					<applicationName>mule-test-cicd-actions-ravyog-${env.ENVIRONMENT}</applicationName>
+					<applicationName>mule-test-cicd-actions-ravyog99-${env.ENVIRONMENT}</applicationName>
 					<environment>${env.ENVIRONMENT}</environment>
+					<businessGroup>apexy DevOps</businessGroup>
+					<businessGroupId>${env.BUS_GROUP_ID}</businessGroupId>
 					<workers>1</workers>
 					<workerType>MICRO</workerType>
 					<objectStoreV2>true</objectStoreV2>
