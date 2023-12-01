@@ -1,4 +1,4 @@
-name: UAT - Build and Deploy
+name: UAT - Build and Deployt
 
 on:
   push:
